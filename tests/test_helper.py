@@ -1,3 +1,4 @@
+from collections import Counter
 from unittest import TestCase
 from helper.helper import Helper
 
@@ -35,3 +36,25 @@ class HelperTests(TestCase):
         card_3 = trello_list_1.add_card('Card 3')
         self.assertEqual(trello_list_1.list_cards(), [card_1, card_2, card_3])
 
+    def test_create_test_data(self):
+        boards = self.helper.create_test_data()
+        board_names = [board.name for board in boards]
+        expected_boards = ['imaging', 'vector', 'claims', 'infrastructure', 'mips', 'misc', 'apps']
+        self.assertCountEqual(board_names, expected_boards)
+        expected_lists = {'coding done': 7, 'qa': 7, 'in progress': 7, 'production': 7, 'final qa': 7, 'backlog': 7}
+        list_counter = Counter()
+        for board in boards:
+            list_counter += Counter([trello_list.name for trello_list in board.open_lists()])
+        self.assertEqual(dict(list_counter), expected_lists)
+        label_counter = Counter()
+        no_labels = []
+        for board in boards:
+            cards = board.open_cards()
+            for card in cards:
+                if card.labels:
+                    label_counter += Counter([label.name for label in card.list_labels])
+                else:
+                    no_labels.append(card)
+        self.assertEqual(len(no_labels), 42)
+        expected_labels = {'task': 126, 'production feedback': 84, 'staging feedback': 42}
+        self.assertEqual(dict(label_counter), expected_labels)
