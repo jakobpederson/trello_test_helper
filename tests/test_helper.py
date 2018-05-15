@@ -58,6 +58,3 @@ class HelperTests(TestCase):
         self.assertEqual(len(no_labels), 42)
         expected_labels = {'task': 126, 'production feedback': 84, 'staging feedback': 42}
         self.assertEqual(dict(label_counter), expected_labels)
-
-    def test_x(self):
-        pass

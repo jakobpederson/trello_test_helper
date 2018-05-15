@@ -8,6 +8,12 @@ LABELS = (
     ('staging feedback', 'green'),
     ('q1', 'black'),
 )
+ADD_LABELS = {
+    1: (),
+    2: (DummyLabel(LABELS[0][0], LABELS[0][1]),),
+    3: (DummyLabel(LABELS[0][0], LABELS[0][1]), DummyLabel(LABELS[1][0], LABELS[1][1])),
+    4: (DummyLabel(LABELS[0][0], LABELS[0][1]), DummyLabel(LABELS[1][0], LABELS[1][1]), DummyLabel(LABELS[2][0], LABELS[2][1]))
+}
 
 
 class Helper():
@@ -48,9 +54,3 @@ class Helper():
             card.add_label(label)
         return card
 
-ADD_LABELS = {
-    1: (),
-    2: (DummyLabel(LABELS[0][0], LABELS[0][1]),),
-    3: (DummyLabel(LABELS[0][0], LABELS[0][1]), DummyLabel(LABELS[1][0], LABELS[1][1])),
-    4: (DummyLabel(LABELS[0][0], LABELS[0][1]), DummyLabel(LABELS[1][0], LABELS[1][1]), DummyLabel(LABELS[2][0], LABELS[2][1]))
-}
