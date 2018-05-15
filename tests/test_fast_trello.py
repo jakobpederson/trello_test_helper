@@ -1,11 +1,11 @@
 from unittest import TestCase
 
-from helper.fast_builder import FastBuilder
+from helper.fast_trello import FastTrello
 
 
 class FastBuilderTests(TestCase):
 
     def test_x(self):
-        builder = FastBuilder()
-        print(builder.user_info.next())
+        builder = FastTrello()
+        # print(builder.user_info.next())
         self.fail('x')
