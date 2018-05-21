@@ -46,6 +46,9 @@ class HelperTests(TestCase):
         for board in boards:
             list_counter += Counter([trello_list.name for trello_list in board.open_lists()])
         self.assertEqual(dict(list_counter), expected_lists)
+        self.assert_labels(boards)
+
+    def assert_labels(self, boards):
         label_counter = Counter()
         no_labels = []
         for board in boards:

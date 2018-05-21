@@ -16,7 +16,6 @@ class FastTrello():
                 self.content.append(line.strip().split(','))
         self.client_list = self.content
         self.user_info = self.get_client()
-        print(self.client_list)
 
     def get_client(self):
         for user in cycle(self.client_list):
