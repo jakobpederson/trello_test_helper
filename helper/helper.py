@@ -3,16 +3,16 @@ from helper.dummy_objs import DummyBoard, DummyLabel
 LIST_NAMES = ('backlog', 'in progress', 'production', 'coding done', 'qa', 'final qa')
 TRELLO_BOARDS = ('vector', 'imaging', 'claims', 'apps', 'mips', 'infrastructure', 'misc')
 LABELS = (
-    ('task', 'red'),
-    ('production feedback', 'blue'),
-    ('staging feedback', 'green'),
-    ('q1', 'black'),
+    DummyLabel('task', 'red'),
+    DummyLabel('production feedback', 'blue'),
+    DummyLabel('staging feedback', 'green'),
+    DummyLabel('q1', 'black'),
 )
 ADD_LABELS = {
     1: (),
-    2: (DummyLabel(LABELS[0][0], LABELS[0][1]),),
-    3: (DummyLabel(LABELS[0][0], LABELS[0][1]), DummyLabel(LABELS[1][0], LABELS[1][1])),
-    4: (DummyLabel(LABELS[0][0], LABELS[0][1]), DummyLabel(LABELS[1][0], LABELS[1][1]), DummyLabel(LABELS[2][0], LABELS[2][1]))
+    2: (LABELS[0],),
+    3: (LABELS[0], LABELS[1]),
+    4: (LABELS[0], LABELS[1], LABELS[2])
 }
 
 
@@ -33,7 +33,6 @@ class Helper():
 
     def add_test_labels_to_board(self, board):
         for label in LABELS:
-            label = DummyLabel(label[0], label[1])
             board.add_label(label)
         return board
 
