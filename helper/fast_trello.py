@@ -15,8 +15,8 @@ class FastTrello():
             for line in f.readlines():
                 self.content.append(line.strip().split(','))
         self.client_list = self.content
-        self.user_info = self.get_client()
+        self.get_client = self.generate_client()
 
-    def get_client(self):
+    def generate_client(self):
         for user in cycle(self.client_list):
             yield TrelloClient(user[0], user[1])
